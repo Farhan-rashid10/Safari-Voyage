@@ -9,10 +9,10 @@ const Nav = () => {
   };
 
   const navItems = [
-    { name: "Home", href: "/", current: true },
+    { name: "Home", href: "/", current: false },
     { name: "Destinations", href: "/dest", current: false },
-    { name: "Holidays", href: "#", current: false },
-    { name: "Packages", href: "#", current: false },
+    
+    { name: "Packages", href: "/packagess", current: false },
     { name: "About", href: "#", current: false },
   ];
 
@@ -25,7 +25,7 @@ const Nav = () => {
         </div>
         <div className="flex items-center space-x-6 lg:order-2">
           <Link
-            to="#"
+            to="ContactUs"
             className="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800"
           >
             Contact Us

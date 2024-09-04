@@ -11,7 +11,10 @@ import Review from './Review';
 import Footer from './Footer';
 import Dest from './Dest';
 import TripModal from './TripModal';
+import BookingForm from './BookingForm'; 
+import Packagess from './Packagess';
 
+import ContactUs from './assets/images/ContactUs';
 function App() {
   return (
     <Router>
@@ -29,7 +32,10 @@ function App() {
           </>
         } />
         <Route path="/dest" element={<Dest />} />
+        <Route path="/packagess" element={<Packagess />} />
+        <Route path="/contactus" element={<ContactUs />} />
         <Route path="/destination/:destinationName" element={<TripModal />} />
+        <Route path="/book/:destinationName" component={BookingForm} />
       </Routes>
       <Footer />
     </Router>
