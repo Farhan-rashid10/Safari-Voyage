@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // Import Link from React Router
 
 const Hero = () => {
   const slides = [
@@ -7,21 +8,21 @@ const Hero = () => {
       title: "Elevate Your Honeymoon in Zanzibar",
       description: "Experience the romance of pristine beaches and exotic culture.",
       ctaText: "Plan Your Getaway",
-      ctaLink: "#",
+      ctaLink: "/contactus", // Link to ContactUs page
     },
     {
       image: "/src/assets/images/mara3.jpg",
       title: "Safari Adventure in Maasai Mara",
       description: "Witness the breathtaking wildlife in their natural habitat.",
       ctaText: "Book Safari",
-      ctaLink: "#",
+      ctaLink: "/contactus", // Link to ContactUs page
     },
     {
       image: "/src/assets/images/diani.jpg",
       title: "Relax in Diani's Paradise",
       description: "Unwind on the white sands of Kenya's most beautiful beach.",
       ctaText: "Explore Diani",
-      ctaLink: "#",
+      ctaLink: "/contactus", // Link to ContactUs page
     },
   ];
 
@@ -59,12 +60,12 @@ const Hero = () => {
             <div className="text-center text-white p-8 max-w-2xl">
               <h1 className="text-5xl font-bold mb-4">{slide.title}</h1>
               <p className="text-xl mb-8">{slide.description}</p>
-              <a
-                href={slide.ctaLink}
-                className="px-6 py-3 bg-orange-500 text-white rounded-full text-lg font-semibold hover:bg-orange-500 transition duration-300"
+              <Link
+                to={slide.ctaLink} // Use Link to route to ContactUs
+                className="px-6 py-3 bg-orange-500 text-white rounded-full text-lg font-semibold hover:bg-orange-600 transition duration-300"
               >
                 {slide.ctaText}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

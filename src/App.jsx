@@ -14,7 +14,7 @@ import TripModal from './TripModal';
 import BookingForm from './BookingForm'; 
 import Packagess from './Packagess';
 
-import ContactUs from './assets/images/ContactUs';
+import ContactUs from './ContactUs';
 function App() {
   return (
     <Router>

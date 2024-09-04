@@ -10,9 +10,7 @@ const ContactUs = () => {
     message: '',
   });
 
-  const destinations = [
-    'Watamu', 'Maasai Mara', 'Dubai', 'Paris', 'Romantic Honeymoon', 'Family Safari', 'Luxury Desert Adventure', 'Thrilling Adventure'
-  ];
+  const [showToast, setShowToast] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,7 +20,10 @@ const ContactUs = () => {
     e.preventDefault();
     // Handle form submission (e.g., send form data to server or email)
     console.log('Contact Us Form Submitted:', formData);
-    alert('Your details have been submitted. Our agents will contact you shortly.');
+
+    // Show the toast notification
+    setShowToast(true);
+
     // Clear the form after submission
     setFormData({
       name: '',
@@ -32,10 +33,22 @@ const ContactUs = () => {
       days: '',
       message: '',
     });
+
+    // Hide the toast after 5 seconds
+    setTimeout(() => {
+      setShowToast(false);
+    }, 5000);
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 bg-gray-50 shadow-lg rounded-lg">
+    <div className="relative max-w-4xl mx-auto px-4 py-8 bg-gray-50 shadow-lg rounded-lg">
+      {/* Toast Notification */}
+      {showToast && (
+        <div className="fixed top-0 left-0 right-0 bg-orange-500 text-white py-4 text-center font-bold shadow-lg z-50">
+          Your details have been submitted successfully! We will contact you soon.
+        </div>
+      )}
+
       <h2 className="text-3xl font-bold text-center text-orange-500 mb-6">Contact Us</h2>
       <p className="text-gray-700 text-center mb-8">
         Let us help you plan the perfect trip. Please fill out the form below, and our expert agents will reach out to assist you.
@@ -87,20 +100,15 @@ const ContactUs = () => {
         {/* Destination Field */}
         <div>
           <label className="block text-gray-700">Where are you going?</label>
-          <select
+          <input
+            type="text"
             name="destination"
             value={formData.destination}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+            placeholder="Enter Your Destination"
             required
-          >
-            <option value="">Select Destination</option>
-            {destinations.map((destination, index) => (
-              <option key={index} value={destination}>
-                {destination}
-              </option>
-            ))}
-          </select>
+          />
         </div>
 
         {/* Days Field */}
@@ -143,7 +151,7 @@ const ContactUs = () => {
       <div className="mt-8 text-center">
         <h3 className="text-xl font-bold text-gray-700">We Are Here to Help!</h3>
         <p className="text-gray-600 mt-2">
-          Our dedicated travel agents are ready to assist you with all your travel needs. Whether you're planning a quick weekend getaway or a luxurious adventure, we’re here to ensure your trip is flawless.
+          Our dedicated travel agents are ready to assist you with all your travel needs. If you feel stuck, call us at <span className="text-orange-500">0743576110</span> and we will help you.
         </p>
       </div>
     </div>
