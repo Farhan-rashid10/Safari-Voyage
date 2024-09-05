@@ -13,8 +13,10 @@ import Dest from './Dest';
 import TripModal from './TripModal';
 import BookingForm from './BookingForm'; 
 import Packagess from './Packagess';
-
+import About from './About';
 import ContactUs from './ContactUs';
+import Admin from './Admin';
+
 function App() {
   return (
     <Router>
@@ -34,6 +36,8 @@ function App() {
         <Route path="/dest" element={<Dest />} />
         <Route path="/packagess" element={<Packagess />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/about" element={<About />} />
         <Route path="/destination/:destinationName" element={<TripModal />} />
         <Route path="/book/:destinationName" component={BookingForm} />
       </Routes>
