@@ -57,42 +57,44 @@ const Packagess = () => {
       </div>
 
       {/* Why Choose Us Section */}
-      <div className="bg-gray-100 py-12">
-        <h2 className="text-3xl font-bold mb-4">Why Choose Us?</h2>
-        <p className="text-gray-700 max-w-3xl mx-auto mb-6">
-          We believe in delivering unique travel experiences that exceed our customers' expectations. Whether you're seeking relaxation, adventure, or a cultural escape, we offer the best-in-class service to make your journey unforgettable. Here's why we're the best choice for your next getaway:
-        </p>
+     {/* Why Choose Us Section */}
+<div className="bg-gray-100 py-12 px-4 md:px-6 lg:px-8"> {/* Added padding to the outer section */}
+  <h2 className="text-3xl font-bold mb-4">Why Choose Us?</h2>
+  <p className="text-gray-700 max-w-3xl mx-auto mb-6">
+    We believe in delivering unique travel experiences that exceed our customers' expectations. Whether you're seeking relaxation, adventure, or a cultural escape, we offer the best-in-class service to make your journey unforgettable. Here's why we're the best choice for your next getaway:
+  </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-bold text-orange-500">Expertly Curated Packages</h3>
-            <p className="text-gray-600 mt-2">
-              Each of our packages is carefully crafted by travel experts to give you the most authentic experience, tailored to your needs.
-            </p>
-          </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-6 lg:px-8"> {/* Added padding to grid container */}
+    <div className="p-4 bg-white rounded-lg shadow-md">
+      <h3 className="text-lg font-bold text-orange-500">Expertly Curated Packages</h3>
+      <p className="text-gray-600 mt-2">
+        Each of our packages is carefully crafted by travel experts to give you the most authentic experience, tailored to your needs.
+      </p>
+    </div>
 
-          <div className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-bold text-orange-500">Personalized Customer Service</h3>
-            <p className="text-gray-600 mt-2">
-              Our dedicated support team is available around the clock to assist you, ensuring your trip is as smooth and stress-free as possible.
-            </p>
-          </div>
+    <div className="p-4 bg-white rounded-lg shadow-md">
+      <h3 className="text-lg font-bold text-orange-500">Personalized Customer Service</h3>
+      <p className="text-gray-600 mt-2">
+        Our dedicated support team is available around the clock to assist you, ensuring your trip is as smooth and stress-free as possible.
+      </p>
+    </div>
 
-          <div className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-bold text-orange-500">Best Price Guarantee</h3>
-            <p className="text-gray-600 mt-2">
-              We offer competitive pricing without compromising on quality, ensuring that you get the best value for your money.
-            </p>
-          </div>
+    <div className="p-4 bg-white rounded-lg shadow-md">
+      <h3 className="text-lg font-bold text-orange-500">Best Price Guarantee</h3>
+      <p className="text-gray-600 mt-2">
+        We offer competitive pricing without compromising on quality, ensuring that you get the best value for your money.
+      </p>
+    </div>
 
-          <div className="p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-bold text-orange-500">Trusted by Thousands</h3>
-            <p className="text-gray-600 mt-2">
-              Thousands of happy travelers have chosen us for their trips, giving us 5-star ratings for our services and attention to detail.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className="p-4 bg-white rounded-lg shadow-md">
+      <h3 className="text-lg font-bold text-orange-500">Trusted by Thousands</h3>
+      <p className="text-gray-600 mt-2">
+        Thousands of happy travelers have chosen us for their trips, giving us 5-star ratings for our services and attention to detail.
+      </p>
+    </div>
+  </div>
+</div>
+
     </div>
   );
 };
