@@ -1,0 +1,28 @@
+{
+  "contactData": [
+    {
+      "id": "b17b",
+      "name": "dahira",
+      "email": "dahira@gmail.com",
+      "phone": "0722489884",
+      "destination": "mombasa",
+      "startDate": "2024-09-06",
+      "days": "5",
+      "travelers": "0",
+      "packageType": "",
+      "message": "visiting"
+    },
+    {
+      "id": "dfa6",
+      "name": "hibo ali",
+      "email": "mohaabdikadiir@gmail.com",
+      "phone": "0734553883",
+      "destination": "malindi",
+      "startDate": "2024-09-17",
+      "days": "5",
+      "travelers": "2",
+      "packageType": "",
+      "message": "i dont malindi so i need a tour guide "
+    }
+  ]
+}

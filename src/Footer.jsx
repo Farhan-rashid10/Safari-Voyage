@@ -1,5 +1,6 @@
 import React from 'react';
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Mail, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -18,16 +19,24 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-semibold text-white mb-4">Explore</h4>
             <ul className="space-y-2">
-              {['Home', 'Destinations', 'Packages', 'About'].map((item) => (
-                <li key={item}>
-                  <a href={`#${item.toLowerCase()}`} className="text-gray-400 hover:text-white transition duration-300">
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link to="/" className="text-gray-400 hover:text-white transition duration-300">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/dest" className="text-gray-400 hover:text-white transition duration-300">
+                  Destinations
+                </Link>
+              </li>
+              <li>
+                <Link to="/packagess" className="text-gray-400 hover:text-white transition duration-300">
+                  Packages
+                </Link>
+              </li>
             </ul>
           </div>
-         
+          
           <div className="col-span-2 sm:col-span-1">
             <h4 className="text-xl font-semibold text-white mb-4">Connect</h4>
             <div className="flex space-x-4 mb-4">
@@ -49,6 +58,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
+          
           <div className="col-span-2 sm:col-span-1">
             <h4 className="text-xl font-semibold text-white mb-4">Address</h4>
             <p className="text-gray-400 text-sm">123 Safari Street, Nairobi, Kenya</p>

@@ -38,9 +38,9 @@ const Why = () => {
         ))}
       </div>
       <div className="text-center mt-12">
-        <button className="bg-orange-500 text-white font-bold py-2 px-6 rounded-full hover:bg-orange-600 transition duration-300">
-          About Us
-        </button>
+      <button className="bg-orange-500 text-white font-bold py-2 px-9 rounded-full hover:bg-orange-600 transition duration-300">
+        <a href="/about">About Us</a>
+      </button>
       </div>
     </div>
   );

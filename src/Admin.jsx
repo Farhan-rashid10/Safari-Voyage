@@ -21,6 +21,7 @@ const Admin = () => {
 
   const handleDelete = async (id) => {
     try {
+      
       await axios.delete(`http://localhost:5000/contactData/${id}`);
       fetchData(); // Refresh data after deletion
     } catch (error) {
@@ -32,7 +33,8 @@ const Admin = () => {
     setEditData(item); // Set the current data to be edited
   };
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
     try {
       await axios.put(`http://localhost:5000/contactData/${editData.id}`, editData);
       setEditData(null); // Clear the edit data after saving
@@ -62,7 +64,6 @@ const Admin = () => {
               <th className="py-2 px-4 border">Start Date</th>
               <th className="py-2 px-4 border">Days</th>
               <th className="py-2 px-4 border">Travelers</th>
-              <th className="py-2 px-4 border">Package</th>
               <th className="py-2 px-4 border">Message</th>
               <th className="py-2 px-4 border">Actions</th>
             </tr>
@@ -78,7 +79,6 @@ const Admin = () => {
                   <td className="py-2 px-4 border">{item.startDate}</td>
                   <td className="py-2 px-4 border">{item.days}</td>
                   <td className="py-2 px-4 border">{item.travelers}</td>
-                  <td className="py-2 px-4 border">{item.packageType}</td>
                   <td className="py-2 px-4 border">{item.message}</td>
                   <td className="py-2 px-4 border flex space-x-2 justify-center">
                     <button
@@ -98,7 +98,7 @@ const Admin = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="10" className="text-center py-4">
+                <td colSpan="9" className="text-center py-4">
                   No data found
                 </td>
               </tr>
@@ -110,7 +110,7 @@ const Admin = () => {
       {/* Edit Modal (appears when editing) */}
       {editData && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full max-h-screen overflow-y-auto">
             <h3 className="text-xl font-bold mb-4">Edit Booking</h3>
             <form onSubmit={handleSave} className="space-y-4">
               <div>
@@ -184,21 +184,6 @@ const Admin = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700">Package Type</label>
-                <select
-                  name="packageType"
-                  value={editData.packageType}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none"
-                >
-                  <option value="">Select Package</option>
-                  <option value="Standard">Standard Package</option>
-                  <option value="Luxury">Luxury Package</option>
-                  <option value="Adventure">Adventure Package</option>
-                  <option value="Custom">Custom Package</option>
-                </select>
-              </div>
-              <div>
                 <label className="block text-gray-700">Message</label>
                 <textarea
                   name="message"
@@ -209,8 +194,7 @@ const Admin = () => {
                 />
               </div>
               <button
-                type="button"
-                onClick={handleSave}
+                type="submit"
                 className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
               >
                 Save

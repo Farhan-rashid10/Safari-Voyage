@@ -1,42 +1,105 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.styled-paragraph {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;  /* Regular weight for readability */
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-size: 1.2rem;  /* Adjust font size for better readability */
+  line-height: 1.8;   /* Increases spacing between lines */
+  letter-spacing: 0.5px;  /* Adds a subtle space between letters */
+  color: #333;  /* Dark gray for better contrast than black */
+  text-align: center;  /* Center-aligns the text for a balanced look */
+  max-width: 700px;  /* Limits the paragraph width for better readability */
+  margin: 0 auto;  /* Centers the paragraph on the page */
+  padding: 10px;   /* Adds some internal padding to the text */
+}
+.steps-section {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.steps-heading {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.steps-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Adds horizontal spacing between steps */
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-icon {
+  font-size: 3rem;
+  color: #ff8c00;  /* Orange for consistency */
+  margin-bottom: 10px;
+}
+
+.arrow-icon {
+  font-size: 4rem;
+  color: #ff8c00;
+}
+
+.step p {
+  font-size: 1.2rem;
+  color: #555;
+  max-width: 150px;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.faq-section {
+  padding: 40px;
+  background-color: #f9f9f9;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.faq-heading {
+  font-size: 2rem;
+  color: #ff8c00;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.card {
-  padding: 2em;
+.faq-item {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
 }
 
-.read-the-docs {
-  color: #888;
+.faq-question {
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-question:hover {
+  color: #ff8c00;
+}
+
+.faq-answer {
+  padding-top: 10px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.faq-item + .faq-item {
+  margin-top: 15px;
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

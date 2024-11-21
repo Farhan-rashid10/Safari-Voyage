@@ -10,7 +10,7 @@ const localDestinations = [
     days: '3',
     highlights: `Watamu is a small town located on the Indian Ocean coast of Kenya, known for its pristine beaches 
     and rich marine life. It offers a wide range of activities, from snorkeling and dolphin watching to exploring 
-    historical sites like the Gede Ruins. The small town has managed to maintain its laid-back coastal charm.`,
+    historical sites like the Gede Ruins.`,
     aboutTour: {
       inclusions: ['Return Flight Tickets', 'Travel Insurance', 'Return Transfers', '2 Nights Accommodation'],
       exclusions: ['All not mentioned above'],
@@ -24,17 +24,56 @@ const localDestinations = [
     location: 'Southwestern Kenya',
     days: '4',
     highlights: `The Maasai Mara is one of the most famous wildlife conservation areas in Africa, renowned for 
-    its exceptional population of lions, leopards, and cheetahs, and the annual migration of zebras, Thomson's gazelles, 
-    and wildebeests to and from the Serengeti. It is also home to the Maasai people, who continue to practice their 
-    traditional customs in this vast region. The Great Migration, often referred to as one of the natural wonders of the 
-    world, takes place every year between July and October.`,
+    its population of lions, leopards, and cheetahs, and the annual migration of zebras and wildebeests.`,
     aboutTour: {
       inclusions: ['Safari', 'All Meals', 'Lodging'],
       exclusions: ['Flights', 'Drinks'],
       specialNotes: ['Great Migration', 'Big 5 Safari', 'Hot Air Balloon Rides'],
     },
   },
-  // Add more local destinations...
+  {
+    name: 'Nairobi National Park',
+    image: 'mara.jpg',
+    price: 'Ksh 8,000',
+    location: 'Nairobi National Park',
+    days: '1',
+    highlights: `Experience Nairobi National Park, where you can enjoy a game drive just minutes away from the capital. 
+    Witness wildlife including rhinos, lions, and giraffes with the Nairobi skyline as a backdrop.`,
+    aboutTour: {
+      inclusions: ['Game Drive', 'Park Entry Fees'],
+      exclusions: ['Meals'],
+      specialNotes: ['Game Drive', 'Animal Orphanage', 'Ivory Burning Site'],
+    },
+  },
+  {
+    name: 'Lamu Island',
+    image: 'raha.jpg',
+    price: 'Ksh 20,000',
+    location: 'Lamu Island',
+    days: '3',
+    highlights: `Lamu Island is one of Kenya's oldest towns, full of Swahili culture and history. 
+    Explore the narrow streets, ride donkeys, and visit the serene Shela Beach for a truly relaxing experience.`,
+    aboutTour: {
+      inclusions: ['Boat Transfers', 'Accommodation', 'Breakfast'],
+      exclusions: ['Personal Expenses'],
+      specialNotes: ['Shela Beach', 'Lamu Fort', 'Donkey Rides'],
+    },
+  },
+  {
+    name: 'Diani Beach',
+
+    image: 'diani.jpg',
+    price: 'Ksh 25,000',
+    location: 'Kwale County',
+    days: '3',
+    highlights: `Diani Beach is known for its crystal-clear waters and white sandy beaches. It's perfect for water sports 
+    such as kite surfing and snorkeling, or simply relaxing by the beach.`,
+    aboutTour: {
+      inclusions: ['2 Nights Accommodation', 'Transfers', 'Meals'],
+      exclusions: ['Personal Expenses'],
+      specialNotes: ['Kite Surfing', 'Snorkeling', 'Camel Rides'],
+    },
+  },
 ];
 
 const internationalDestinations = [
@@ -45,8 +84,7 @@ const internationalDestinations = [
     location: 'United Arab Emirates',
     days: '5',
     highlights: `Dubai is known for its ultramodern architecture, luxury shopping, and vibrant nightlife scene. 
-    The iconic Burj Khalifa, an 830m tall tower, dominates the skyscraper-filled skyline. Dubai is also famous 
-    for its artificial islands, world-class hotels, and high-end desert safaris.`,
+    The iconic Burj Khalifa, an 830m tall tower, dominates the skyscraper-filled skyline.`,
     aboutTour: {
       inclusions: ['Flights', 'Hotel Stay', 'Desert Safari'],
       exclusions: ['Personal Expenses'],
@@ -61,15 +99,53 @@ const internationalDestinations = [
     days: '4',
     highlights: `Paris, the capital of France, is one of the most romantic cities in the world. 
     Known for its art, fashion, and culture, Paris is home to the iconic Eiffel Tower, the world-famous Louvre Museum, 
-    and the historic Notre-Dame Cathedral. Visitors can enjoy leisurely strolls along the Seine River or sip coffee at 
-    sidewalk cafes.`,
+    and the historic Notre-Dame Cathedral.`,
     aboutTour: {
       inclusions: ['Flights', 'Hotel Stay', 'City Tour'],
       exclusions: ['Meals'],
       specialNotes: ['Eiffel Tower', 'Louvre Museum', 'Seine River Cruise'],
     },
   },
-  // Add more international destinations...
+  {
+    name: 'New York City',
+    image: 'nyc.jpg',
+    price: '$2,500',
+    location: 'United States',
+    days: '7',
+    highlights: `New York City is known for its iconic landmarks, including the Statue of Liberty, Times Square, and Central Park. 
+    Experience the fast-paced lifestyle, world-class restaurants, and Broadway shows.`,
+    aboutTour: {
+      inclusions: ['Flights', 'Hotel Stay', 'City Tour'],
+      exclusions: ['Meals'],
+      specialNotes: ['Statue of Liberty', 'Empire State Building', 'Broadway Shows'],
+    },
+  },
+  {
+    name: 'Santorini',
+    image: 'santorini.jpg',
+    price: '€2,200',
+    location: 'Greece',
+    days: '5',
+    highlights: `Santorini, famous for its whitewashed buildings and blue domes, offers breathtaking sunsets and scenic beauty.`,
+    aboutTour: {
+      inclusions: ['Flights', 'Hotel Stay', 'Island Tour'],
+      exclusions: ['Personal Expenses'],
+      specialNotes: ['Wine Tasting', 'Oia Village', 'Caldera Sunset Cruise'],
+    },
+  },
+  {
+    name: 'Maldives',
+    image: 'maldives.jpg',
+    price: '$3,200',
+    location: 'Indian Ocean',
+    days: '5',
+    highlights: `The Maldives is a tropical paradise known for its crystal-clear waters, overwater bungalows, and world-class diving.`,
+    aboutTour: {
+      inclusions: ['Flights', 'Resort Stay', 'Spa Package'],
+      exclusions: ['Personal Expenses'],
+      specialNotes: ['Overwater Bungalows', 'Scuba Diving', 'Spa Treatments'],
+    },
+  },
 ];
 
 const TripModal = () => {
@@ -77,10 +153,10 @@ const TripModal = () => {
   const allDestinations = [...localDestinations, ...internationalDestinations]; // Merge both local and international
 
   // Decode the URL-encoded destination name
-  const decodedDestinationName = decodeURIComponent(destinationName);
+  const decodedDestinationName = decodeURIComponent(destinationName.toLowerCase());
 
-  // Find the destination by the decoded name
-  const destination = allDestinations.find(dest => dest.name === decodedDestinationName);
+  // Find the destination by the decoded name (case insensitive)
+  const destination = allDestinations.find(dest => dest.name.toLowerCase() === decodedDestinationName);
 
   if (!destination) {
     return <p>Destination not found.</p>;
@@ -132,6 +208,7 @@ const TripModal = () => {
             <li key={index}>{note}</li>
           ))}
         </ul>
+        {/* {/* <nav></nav> */ }
       </div>
     </div>
   );

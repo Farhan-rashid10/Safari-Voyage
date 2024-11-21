@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DestinationCard = ({ image, name, category, discount, price, rating }) => (
-  <div className="relative rounded-lg overflow-hidden shadow-lg cursor-pointer">
+  <Link to={`/destination/${encodeURIComponent(name)}`} className="relative rounded-lg overflow-hidden shadow-lg cursor-pointer">
     {discount && (
       <div className="absolute top-0 left-0 bg-yellow-400 text-white py-1 px-3 rounded-br-lg font-bold">
         {discount}% OFF
@@ -21,7 +22,7 @@ const DestinationCard = ({ image, name, category, discount, price, rating }) => 
         </div>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 const International = () => {

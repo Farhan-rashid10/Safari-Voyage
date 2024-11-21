@@ -16,7 +16,27 @@ const localDestinations = [
     imageUrl: '/src/assets/images/masaaimara.jpg',
     rating: 4.5,
   },
-  // Add more local destinations...
+  {
+    name: 'Diani Beach',
+    description: 'Relax on the white sands of Diani Beach, perfect for a peaceful getaway.',
+    price: 'Ksh 12,000',
+    imageUrl: '/src/assets/images/diani.jpg',
+    rating: 4.7,
+  },
+  {
+    name: 'Nairobi National Park',
+    description: 'Experience the thrill of wildlife safaris just minutes away from the city.',
+    price: 'Ksh 8,000',
+    imageUrl: '/src/assets/images/nai.jpg',
+    rating: 4.6,
+  },
+  {
+    name: 'Lamu Island',
+    description: 'Step into the serene atmosphere of Lamu, a perfect combination of culture and relaxation.',
+    price: 'Ksh 10,500',
+    imageUrl: '/src/assets/images/raha.jpg',
+    rating: 4.4,
+  },
 ];
 
 const internationalDestinations = [
@@ -34,8 +54,58 @@ const internationalDestinations = [
     imageUrl: '/src/assets/images/paris.jpg',
     rating: 4.5,
   },
-  // Add more international destinations...
+  {
+    name: 'Maldives',
+    description: 'Indulge in the pristine blue waters and luxury resorts of the Maldives.',
+    price: '$3,200',
+    imageUrl: '/src/assets/images/maldives.jpg',
+    rating: 4.8,
+  },
+  {
+    name: 'New York City',
+    description: 'Explore the vibrant and bustling New York City in this 7-day adventure.',
+    price: '$2,500',
+    imageUrl: '/src/assets/images/newyork.jpg',
+    rating: 4.7,
+  },
+  {
+    name: 'Santorini',
+    description: 'Discover the beautiful landscapes and sunsets of Santorini, Greece.',
+    price: '€2,200',
+    imageUrl: '/src/assets/images/santorini.jpg',
+    rating: 4.6,
+  },
 ];
+
+const DestinationCard = ({ destination }) => (
+  <div className="bg-white p-6 rounded-lg shadow-lg flex">
+    <div className="w-1/3 relative">
+      <img 
+        src={destination.imageUrl} 
+        alt={destination.name} 
+        className="w-full h-48 object-cover rounded-lg" 
+      />
+      <div className="absolute top-2 left-2 bg-white px-2 py-1 rounded shadow text-orange-500 font-bold text-sm">
+        {destination.rating} ★
+      </div>
+    </div>
+    <div className="w-2/3 pl-6 flex flex-col justify-between">
+      <div>
+        <h3 className="text-2xl font-semibold mb-2">{destination.name}</h3>
+        <p className="text-gray-700 mb-4">{destination.description}</p>
+      </div>
+      <div className="flex items-center justify-between">
+        <p className="text-orange-500 text-xl font-bold">{destination.price}</p>
+        <Link 
+          to={`/destination/${encodeURIComponent(destination.name)}`} 
+          className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600"
+        >
+          More Info
+        </Link>
+      </div>
+    </div>
+  </div>
+);
 
 const Dest = () => {
   return (
@@ -44,26 +114,7 @@ const Dest = () => {
       <h2 className="text-3xl font-bold mb-6 text-center">Local Destinations</h2>
       <div className="grid grid-cols-1 gap-8 mb-12">
         {localDestinations.map((destination, index) => (
-          <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex">
-            <div className="w-1/3 relative">
-              <img src={destination.imageUrl} alt={destination.name} className="w-full h-48 object-cover rounded-lg" />
-              <div className="absolute top-2 left-2 bg-white px-2 py-1 rounded shadow text-orange-500 font-bold text-sm">
-                {destination.rating} ★
-              </div>
-            </div>
-            <div className="w-2/3 pl-6 flex flex-col justify-between">
-              <div>
-                <h3 className="text-2xl font-semibold mb-2">{destination.name}</h3>
-                <p className="text-gray-700 mb-4">{destination.description}</p>
-              </div>
-              <div className="flex items-center justify-between">
-                <p className="text-orange-500 text-xl font-bold">{destination.price}</p>
-                <Link to={`/destination/${encodeURIComponent(destination.name)}`} className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600">
-                  More Info
-                </Link>
-              </div>
-            </div>
-          </div>
+          <DestinationCard key={index} destination={destination} />
         ))}
       </div>
 
@@ -71,26 +122,7 @@ const Dest = () => {
       <h2 className="text-3xl font-bold mb-6 text-center">International Destinations</h2>
       <div className="grid grid-cols-1 gap-8">
         {internationalDestinations.map((destination, index) => (
-          <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex">
-            <div className="w-1/3 relative">
-              <img src={destination.imageUrl} alt={destination.name} className="w-full h-48 object-cover rounded-lg" />
-              <div className="absolute top-2 left-2 bg-white px-2 py-1 rounded shadow text-orange-500 font-bold text-sm">
-                {destination.rating} ★
-              </div>
-            </div>
-            <div className="w-2/3 pl-6 flex flex-col justify-between">
-              <div>
-                <h3 className="text-2xl font-semibold mb-2">{destination.name}</h3>
-                <p className="text-gray-700 mb-4">{destination.description}</p>
-              </div>
-              <div className="flex items-center justify-between">
-                <p className="text-orange-500 text-xl font-bold">{destination.price}</p>
-                <Link to={`/destination/${encodeURIComponent(destination.name)}`} className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600">
-                  More Info
-                </Link>
-              </div>
-            </div>
-          </div>
+          <DestinationCard key={index} destination={destination} />
         ))}
       </div>
     </div>

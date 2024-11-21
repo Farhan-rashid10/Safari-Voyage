@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import axios for making HTTP requests
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -6,7 +7,10 @@ const ContactUs = () => {
     email: '',
     phone: '',
     destination: '',
+    startDate: '',
     days: '',
+    travelers: '',
+    packageType: '',
     message: '',
   });
 
@@ -16,46 +20,47 @@ const ContactUs = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send form data to server or email)
-    console.log('Contact Us Form Submitted:', formData);
+    try {
+      // Send the form data to the JSON server
+      await axios.post('http://localhost:5000/contactData', formData);
 
-    // Show the toast notification
-    setShowToast(true);
+      // Show the toast notification
+      setShowToast(true);
 
-    // Clear the form after submission
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      destination: '',
-      days: '',
-      message: '',
-    });
+      // Clear the form after submission
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        destination: '',
+        startDate: '',
+        days: '',
+        travelers: '',
+        packageType: '',
+        message: '',
+      });
 
-    // Hide the toast after 5 seconds
-    setTimeout(() => {
-      setShowToast(false);
-    }, 5000);
+      // Hide the toast after 5 seconds
+      setTimeout(() => {
+        setShowToast(false);
+      }, 5000);
+    } catch (error) {
+      console.error('Error submitting form data:', error);
+    }
   };
 
   return (
     <div className="relative max-w-4xl mx-auto px-4 py-8 bg-gray-50 shadow-lg rounded-lg">
-      {/* Toast Notification */}
       {showToast && (
         <div className="fixed top-0 left-0 right-0 bg-orange-500 text-white py-4 text-center font-bold shadow-lg z-50">
-          Your details have been submitted successfully! We will contact you soon.
+          Your booking request has been submitted successfully! We will contact you soon.
         </div>
       )}
 
-      <h2 className="text-3xl font-bold text-center text-orange-500 mb-6">Contact Us</h2>
-      <p className="text-gray-700 text-center mb-8">
-        Let us help you plan the perfect trip. Please fill out the form below, and our expert agents will reach out to assist you.
-      </p>
-
+      <h2 className="text-3xl font-bold text-center text-orange-500 mb-6">Book Your Dream Trip</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Name Field */}
         <div>
           <label className="block text-gray-700">Name</label>
           <input
@@ -69,7 +74,6 @@ const ContactUs = () => {
           />
         </div>
 
-        {/* Email Field */}
         <div>
           <label className="block text-gray-700">Email</label>
           <input
@@ -83,7 +87,6 @@ const ContactUs = () => {
           />
         </div>
 
-        {/* Phone Field */}
         <div>
           <label className="block text-gray-700">Phone</label>
           <input
@@ -97,63 +100,79 @@ const ContactUs = () => {
           />
         </div>
 
-        {/* Destination Field */}
         <div>
-          <label className="block text-gray-700">Where are you going?</label>
+          <label className="block text-gray-700">Destination</label>
           <input
             type="text"
             name="destination"
             value={formData.destination}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none"
-            placeholder="Enter Your Destination"
+            placeholder="Destination"
             required
           />
         </div>
 
-        {/* Days Field */}
+        {/* New Field: Start Date */}
         <div>
-          <label className="block text-gray-700">How many days are you planning?</label>
+          <label className="block text-gray-700">Start Date</label>
+          <input
+            type="date"
+            name="startDate"
+            value={formData.startDate}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+            required
+          />
+        </div>
+
+        {/* New Field: Days */}
+        <div>
+          <label className="block text-gray-700">Number of Days</label>
           <input
             type="number"
             name="days"
             value={formData.days}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none"
-            placeholder="Number of Days"
+            placeholder="Duration of Trip (in Days)"
             required
           />
         </div>
 
-        {/* Message Field */}
+        {/* New Field: Number of Travelers */}
         <div>
-          <label className="block text-gray-700">Message</label>
+          <label className="block text-gray-700">Number of Travelers</label>
+          <input
+            type="number"
+            name="travelers"
+            value={formData.travelers}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+            placeholder="Number of Travelers"
+            required
+          />
+        </div>
+
+        {/* New Field: Travel Package */}
+      
+
+        <div>
+          <label className="block text-gray-700">Special Requests or Questions</label>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none"
             rows="4"
-            placeholder="Any special requests or questions?"
+            placeholder="Add any specific requirements or inquiries here"
           />
         </div>
 
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600"
-        >
-          Submit Details
+        <button type="submit" className="w-full bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600">
+          Submit Booking
         </button>
       </form>
-
-      {/* Assurance Message */}
-      <div className="mt-8 text-center">
-        <h3 className="text-xl font-bold text-gray-700">We Are Here to Help!</h3>
-        <p className="text-gray-600 mt-2">
-          Our dedicated travel agents are ready to assist you with all your travel needs. If you feel stuck, call us at <span className="text-orange-500">0743576110</span> and we will help you.
-        </p>
-      </div>
     </div>
   );
 };

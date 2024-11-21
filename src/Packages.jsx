@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import honeyImage from './assets/images/honey.jpg';
 import safariImage from './assets/images/safari1.jpg';
 import watamuImage from './assets/images/watamu1.jpg';
@@ -32,7 +33,7 @@ const Packages = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8 text-center ">
+    <div className="container mx-auto px-4 py-8 text-center">
       <h1 className="text-4xl font-bold mb-2">
         <span className="text-black-800">Recommended</span>{' '}
         <span className="text-orange-500">Themed Packages</span>
@@ -44,6 +45,15 @@ const Packages = () => {
         {packages.map((pkg, index) => (
           <PackageCard key={index} {...pkg} />
         ))}
+      </div>
+      {/* View More Button */}
+      <div className="mt-8">
+        <Link
+          to="/packagess"
+          className="inline-block bg-orange-500 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-orange-600 transition-all duration-300"
+        >
+          View More Packages
+        </Link>
       </div>
     </div>
   );
