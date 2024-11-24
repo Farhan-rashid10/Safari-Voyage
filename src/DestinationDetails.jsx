@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 
 const destinations = [
   { 
@@ -10,14 +10,14 @@ const destinations = [
     image: "/src/assets/images/raha.jpg",
   },
   { 
-    name: 'Diani/Ukunda', 
+    name: 'Diani', 
     description: 'Relax on the white sandy beaches of Diani and enjoy luxury resorts.', 
     price: 'Ksh 12,000',
     highlights: ['Free transport', 'Luxury resorts', 'Insurance'],
     image: "/src/assets/images/dinaa.jpg",
   },
   { 
-    name: 'Malindi/Watamu', 
+    name: 'Watamu', 
     description: 'Discover coral reefs, marine life, and the serene beauty of Watamu.', 
     price: 'Ksh 14,000',
     highlights: ['Free transport', 'Marine activities', 'Insurance'],
@@ -30,36 +30,41 @@ const destinations = [
     highlights: ['Free safari guide', 'Transport included', 'Insurance'],
     image: "/src/assets/images/masaaimara.jpg",
   },
-  { 
-    name: 'Amboseli', 
-    description: 'Explore Amboseli with its large elephant herds and views of Kilimanjaro.', 
-    price: 'Ksh 11,500',
-    highlights: ['Transport included', 'Professional guide', 'Insurance'],
-    image: "/src/assets/images/amboseli.jpg",
-  },
 ];
 
 const DestinationDetails = () => {
-  const { destinationName } = useParams(); // Get destination name from the URL
-  const decodedName = decodeURIComponent(destinationName); // Decode the name for accurate matching
+  const { destinationName } = useParams();
+  const decodedName = decodeURIComponent(destinationName.trim().toLowerCase().replace(/-/g, ' '));
+  const [cart, setCart] = useState([]); // Initialize cart state
 
-  // Find the destination based on the decoded name
+  console.log(`Decoded Name: ${decodedName}`); // Debugging output
+
   const destination = destinations.find(
-    (dest) => dest.name.toLowerCase() === decodedName.toLowerCase()
+    (dest) => dest.name.trim().toLowerCase() === decodedName
   );
 
   if (!destination) {
-  return (
-    <div className="container mx-auto p-6 text-center">
-      <h2 className="text-2xl font-bold text-red-600 mb-4">Destination Not Found</h2>
-      <p className="mb-4">The destination you are looking for does not exist.</p>
-      <Link to="/dest" className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600">
-        View All Destinations
-      </Link>
-    </div>
-  );
-}
+    return (
+      <div className="container mx-auto p-6 text-center">
+        <h2 className="text-2xl font-bold text-red-600 mb-4">Destination Not Found</h2>
+        <p className="mb-4">The destination you are looking for does not exist.</p>
+        <Link to="/" className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600">
+          View All Destinations
+        </Link>
+      </div>
+    );
+  }
 
+  // Add destination to the cart
+  const handleAddToCart = () => {
+    setCart((prevCart) => {
+      if (prevCart.some((item) => item.name === destination.name)) {
+        alert('This trip is already in your cart.');
+        return prevCart; // Prevent duplicates
+      }
+      return [...prevCart, destination];
+    });
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -71,18 +76,42 @@ const DestinationDetails = () => {
             className="w-full h-auto rounded-lg"
           />
         </div>
-        <div className="w-2/3 pl-6">
-          <h1 className="text-3xl font-bold mb-4">{destination.name}</h1>
-          <p className="text-gray-700 mb-4">{destination.description}</p>
-          <h2 className="text-xl font-bold mb-2">Trip Highlights</h2>
-          <ul className="list-disc pl-6 mb-4">
-            {destination.highlights.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-          <p className="text-orange-500 text-2xl font-bold mb-6">{destination.price}</p>
+        <div className="w-2/3 pl-6 flex flex-col justify-between">
+          <div>
+            <h1 className="text-3xl font-bold mb-4">{destination.name}</h1>
+            <p className="text-gray-700 mb-4">{destination.description}</p>
+            <h2 className="text-xl font-bold mb-2">Trip Highlights</h2>
+            <ul className="list-disc pl-6 mb-4">
+              {destination.highlights.map((highlight, index) => (
+                <li key={index}>{highlight}</li>
+              ))}
+            </ul>
+            <p className="text-orange-500 text-2xl font-bold mb-6">{destination.price}</p>
+          </div>
+          <div className="mt-4">
+            <button
+              onClick={handleAddToCart}
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 w-full"
+            >
+              Book Now
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Cart Display */}
+      {cart.length > 0 && (
+        <div className="mt-8 bg-gray-100 p-4 rounded-lg">
+          <h2 className="text-xl font-bold mb-4">Your Cart</h2>
+          <ul className="list-disc pl-6">
+            {cart.map((item, index) => (
+              <li key={index} className="mb-2">
+                {item.name} - <span className="text-orange-500">{item.price}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

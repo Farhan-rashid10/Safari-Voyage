@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -62,7 +61,6 @@ const localDestinations = [
   },
   {
     name: 'Diani Beach',
-
     image: 'diani.jpg',
     price: 'Ksh 25,000',
     location: 'Kwale County',
@@ -74,43 +72,20 @@ const localDestinations = [
       exclusions: ['Personal Expenses'],
       specialNotes: ['Kite Surfing', 'Snorkeling', 'Camel Rides'],
     },
-    name: 'Mombasa North Coast', 
-    
-//     description: 'Enjoy stunning beaches and vibrant nightlife in Mombasa North Coast.', 
-//     price: 'Ksh 13,500',
-//     highlights: ['Free transport', 'Free guide', 'Insurance'],
-//     image: "/src/assets/images/raha.jpg",
-//   },
-//   { 
-//     name: 'Diani/Ukunda', 
-//     description: 'Relax on the white sandy beaches of Diani and enjoy luxury resorts.', 
-//     price: 'Ksh 12,000',
-//     highlights: ['Free transport', 'Luxury resorts', 'Insurance'],
-//     image: "/src/assets/images/dinaa.jpg",
-//   },
-//   { 
-//     name: 'Malindi/Watamu', 
-//     description: 'Discover coral reefs, marine life, and the serene beauty of Watamu.', 
-//     price: 'Ksh 14,000',
-//     highlights: ['Free transport', 'Marine activities', 'Insurance'],
-//     image: "/src/assets/images/watamu.jpg",
-//   },
-//   { 
-//     name: 'Maasai Mara', 
-//     description: 'Witness the Great Migration and enjoy a rich cultural experience.', 
-//     price: 'Ksh 15,000',
-//     highlights: ['Free safari guide', 'Transport included', 'Insurance'],
-//     image: "/src/assets/images/masaaimara.jpg",
-//   },
-//   { 
-//     name: 'Amboseli', 
-//     description: 'Explore Amboseli with its large elephant herds and views of Kilimanjaro.', 
-//     price: 'Ksh 11,500',
-//     highlights: ['Transport included', 'Professional guide', 'Insurance'],
-//     image: "/src/assets/images/amboseli.jpg",
-//   },
   },
-  
+  {
+    name: 'Mombasa North Coast',
+    image: 'mombasa.jpg',
+    price: 'Ksh 13,500',
+    location: 'Mombasa North Coast',
+    days: '3',
+    highlights: `Mombasa North Coast offers stunning beaches, vibrant nightlife, and a rich blend of Swahili culture.`,
+    aboutTour: {
+      inclusions: ['Free Transport', 'Guide Services', 'Accommodation'],
+      exclusions: ['Meals', 'Personal Expenses'],
+      specialNotes: ['Fort Jesus', 'Haller Park', 'Nyali Beach'],
+    },
+  },
 ];
 
 const internationalDestinations = [
@@ -143,49 +118,9 @@ const internationalDestinations = [
       specialNotes: ['Eiffel Tower', 'Louvre Museum', 'Seine River Cruise'],
     },
   },
-  {
-    name: 'New York City',
-    image: 'nyc.jpg',
-    price: '$2,500',
-    location: 'United States',
-    days: '7',
-    highlights: `New York City is known for its iconic landmarks, including the Statue of Liberty, Times Square, and Central Park. 
-    Experience the fast-paced lifestyle, world-class restaurants, and Broadway shows.`,
-    aboutTour: {
-      inclusions: ['Flights', 'Hotel Stay', 'City Tour'],
-      exclusions: ['Meals'],
-      specialNotes: ['Statue of Liberty', 'Empire State Building', 'Broadway Shows'],
-    },
-  },
-  {
-    name: 'Santorini',
-    image: 'santorini.jpg',
-    price: '€2,200',
-    location: 'Greece',
-    days: '5',
-    highlights: `Santorini, famous for its whitewashed buildings and blue domes, offers breathtaking sunsets and scenic beauty.`,
-    aboutTour: {
-      inclusions: ['Flights', 'Hotel Stay', 'Island Tour'],
-      exclusions: ['Personal Expenses'],
-      specialNotes: ['Wine Tasting', 'Oia Village', 'Caldera Sunset Cruise'],
-    },
-  },
-  {
-    name: 'Maldives',
-    image: 'maldives.jpg',
-    price: '$3,200',
-    location: 'Indian Ocean',
-    days: '5',
-    highlights: `The Maldives is a tropical paradise known for its crystal-clear waters, overwater bungalows, and world-class diving.`,
-    aboutTour: {
-      inclusions: ['Flights', 'Resort Stay', 'Spa Package'],
-      exclusions: ['Personal Expenses'],
-      specialNotes: ['Overwater Bungalows', 'Scuba Diving', 'Spa Treatments'],
-    },
-  },
 ];
 
-const  ComponentDetailsComp = () => {
+const ComponentDetailsComp = () => {
   const { destinationName } = useParams(); // Get destination name from URL
   const allDestinations = [...localDestinations, ...internationalDestinations]; // Merge both local and international
 
@@ -193,7 +128,9 @@ const  ComponentDetailsComp = () => {
   const decodedDestinationName = decodeURIComponent(destinationName.toLowerCase());
 
   // Find the destination by the decoded name (case insensitive)
-  const destination = allDestinations.find(dest => dest.name.toLowerCase() === decodedDestinationName);
+  const destination = allDestinations.find(
+    (dest) => dest.name.toLowerCase() === decodedDestinationName
+  );
 
   if (!destination) {
     return <p>Destination not found.</p>;
@@ -206,13 +143,21 @@ const  ComponentDetailsComp = () => {
         <p className="text-2xl text-red-500">{destination.price}</p>
       </div>
       <div className="mb-8">
-        <img src={`/src/assets/images/${destination.image}`} alt={destination.name} className="w-full h-64 object-cover rounded-lg shadow-md" />
+        <img
+          src={`/src/assets/images/${destination.image}`}
+          alt={destination.name}
+          className="w-full h-64 object-cover rounded-lg shadow-md"
+        />
       </div>
       <div className="bg-gray-100 p-6 rounded-lg mb-8">
         <h3 className="text-xl font-semibold mb-4">Trip Information</h3>
         <ul className="space-y-2">
-          <li><strong>Location:</strong> {destination.location}</li>
-          <li><strong>Days Count:</strong> {destination.days}</li>
+          <li>
+            <strong>Location:</strong> {destination.location}
+          </li>
+          <li>
+            <strong>Days Count:</strong> {destination.days}
+          </li>
         </ul>
       </div>
       <div className="mb-8">
@@ -245,7 +190,6 @@ const  ComponentDetailsComp = () => {
             <li key={index}>{note}</li>
           ))}
         </ul>
-        {/* {/* <nav></nav> */ }
       </div>
     </div>
   );

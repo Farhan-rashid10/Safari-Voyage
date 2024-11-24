@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const destinations = [
   { 
@@ -11,7 +11,7 @@ const destinations = [
     highlights: ['Free transport', 'Free guide', 'Insurance'],
   },
   { 
-    name: 'Diani/Ukunda', 
+    name: 'Diani', 
     packages: 2, 
     image: "/src/assets/images/dinaa.jpg", 
     description: 'Relax on the white sandy beaches of Diani and enjoy luxury resorts.', 
@@ -19,7 +19,7 @@ const destinations = [
     highlights: ['Free transport', 'Luxury resorts', 'Insurance'],
   },
   { 
-    name: 'Malindi/Watamu', 
+    name: 'Watamu', 
     packages: 2, 
     image: "/src/assets/images/watamu.jpg", 
     description: 'Discover coral reefs, marine life, and the serene beauty of Watamu.', 
@@ -34,17 +34,15 @@ const destinations = [
     price: 'Ksh 15,000',
     highlights: ['Free safari guide', 'Transport included', 'Insurance'],
   },
-  { 
-    name: 'Amboseli', 
-    packages: 1, 
-    image: "/src/assets/images/amboseli.jpg", 
-    description: 'Explore Amboseli with its large elephant herds and views of Kilimanjaro.', 
-    price: 'Ksh 11,500',
-    highlights: ['Transport included', 'Professional guide', 'Insurance'],
-  },
 ];
 
 const Destination = () => {
+  const navigate = useNavigate(); // React Router hook for navigation
+
+  const handleButtonClick = () => {
+    navigate('/dest'); // Navigate to /dest when button is clicked
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-4xl font-bold text-center mb-4">
@@ -55,23 +53,9 @@ const Destination = () => {
       </p>
 
       <div className="grid grid-cols-4 gap-4 auto-rows-[200px]">
-        {destinations.map((destination, index) => {
-          let classes = "relative overflow-hidden rounded-lg";
-          if (index === 0) {
-            classes += " col-span-2 row-span-2";
-          } else if (index < 5) {
-            classes += " col-span-2";
-          } else {
-            classes += " col-span-1";
-          }
-
+        {destinations.map((destination) => {
           return (
-            <Link
-            key={destination.name}
-            to={`/destination/${encodeURIComponent(destination.name.trim().toLowerCase())}`} // Encode name consistently
-            className={classes}
-          >
-          
+            <div key={destination.name} className="relative overflow-hidden rounded-lg col-span-2">
               <img
                 src={destination.image}
                 alt={destination.name}
@@ -83,9 +67,19 @@ const Destination = () => {
                   ({destination.packages}) Package{destination.packages !== 1 ? 's' : ''}
                 </p>
               </div>
-            </Link>
+            </div>
           );
         })}
+      </div>
+
+      {/* Navigation Button */}
+      <div className="text-center mt-8">
+        <button
+          onClick={handleButtonClick}
+          className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+        >
+          View All Destinations
+        </button>
       </div>
     </div>
   );

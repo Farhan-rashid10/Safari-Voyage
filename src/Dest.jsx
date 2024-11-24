@@ -37,6 +37,13 @@ const localDestinations = [
     imageUrl: '/src/assets/images/raha.jpg',
     rating: 4.4,
   },
+  {
+    name: 'Mombasa North Coast',
+    description: 'Enjoy stunning beaches and vibrant nightlife in Mombasa North Coast.',
+    price: 'Ksh 15,000',
+    imageUrl: '/src/assets/images/mombasa.jpg',
+    rating: 4.8,
+  },
 ];
 
 const internationalDestinations = [
