@@ -37,8 +37,6 @@ const DestinationDetails = () => {
   const decodedName = decodeURIComponent(destinationName.trim().toLowerCase().replace(/-/g, ' '));
   const [cart, setCart] = useState([]); // Initialize cart state
 
-  console.log(`Decoded Name: ${decodedName}`); // Debugging output
-
   const destination = destinations.find(
     (dest) => dest.name.trim().toLowerCase() === decodedName
   );
@@ -68,15 +66,15 @@ const DestinationDetails = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex">
-        <div className="w-1/3">
+      <div className="flex flex-col md:flex-row gap-6">
+        <div className="md:w-1/3">
           <img
             src={destination.image}
             alt={destination.name}
             className="w-full h-auto rounded-lg"
           />
         </div>
-        <div className="w-2/3 pl-6 flex flex-col justify-between">
+        <div className="md:w-2/3 flex flex-col justify-between">
           <div>
             <h1 className="text-3xl font-bold mb-4">{destination.name}</h1>
             <p className="text-gray-700 mb-4">{destination.description}</p>
@@ -91,7 +89,7 @@ const DestinationDetails = () => {
           <div className="mt-4">
             <button
               onClick={handleAddToCart}
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 w-full"
+              className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600"
             >
               Book Now
             </button>

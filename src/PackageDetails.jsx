@@ -12,7 +12,7 @@ import mountainImage from './assets/images/mountain.jpg';
 const packages = [
   {
     name: 'Romantic Honeymoon',
-    description: 'Celebrate your love with an unforgettable 7-day beach retreat. Enjoy intimate moments with private dinners, soothing spa treatments, and mesmerizing sunset cruises. Perfect for rekindling romance and creating cherished memories.',
+    description: 'Celebrate your love with an unforgettable 7-day beach retreat. Enjoy intimate moments with private dinners, soothing spa treatments, and mesmerizing sunset cruises.',
     image: honeyImage,
     price: 199,
     rating: 5,
@@ -36,7 +36,7 @@ const packages = [
   },
   {
     name: 'Birthday Bash Safari',
-    description: 'Make your birthday unforgettable with a thrilling 5-day safari adventure! Celebrate in the wild, spot the Big 5, and enjoy luxury lodges. Perfect for creating once-in-a-lifetime birthday memories.',
+    description: 'Make your birthday unforgettable with a thrilling 5-day safari adventure! Celebrate in the wild, spot the Big 5, and enjoy luxury lodges.',
     image: safariImage,
     price: 299,
     rating: 4,
@@ -57,7 +57,7 @@ const packages = [
   },
   {
     name: 'Weekend City Escape',
-    description: 'Wanna escape the bustling and noisy city? We’ve got you covered! Enjoy a 3-day luxurious urban retreat in Watamu. Unwind with stunning views, water sports, and guided city tours.',
+    description: 'Enjoy a 3-day luxurious urban retreat in Watamu. Unwind with stunning views, water sports, and guided city tours.',
     image: watamuImage,
     price: 69,
     rating: 5,
@@ -78,7 +78,7 @@ const packages = [
   },
   {
     name: 'Family Safari Fun',
-    description: 'Bring your family together on a 6-day adventure! Enjoy exciting safaris, cozy lodges, and family-friendly activities. Create memories that will last a lifetime!',
+    description: 'Bring your family together on a 6-day adventure! Enjoy exciting safaris, cozy lodges, and family-friendly activities.',
     image: familySafariImage,
     price: 1499,
     rating: 5,
@@ -99,7 +99,7 @@ const packages = [
   },
   {
     name: 'Adventurous Mountain Climb',
-    description: 'Ready to conquer new heights? This 7-day mountain climbing experience is designed for thrill-seekers. Witness breathtaking summit views and camp under the stars.',
+    description: 'This 7-day mountain climbing experience is designed for thrill-seekers. Witness breathtaking summit views and camp under the stars.',
     image: mountainImage,
     price: 799,
     rating: 5,
@@ -162,7 +162,7 @@ const packages = [
   },
   {
     name: 'Thrilling Adventure Package',
-    description: 'Calling all adrenaline junkies! This 7-day extreme sports package offers skydiving, white-water rafting, and mountain biking adventures.',
+    description: 'This 7-day extreme sports package offers skydiving, white-water rafting, and mountain biking adventures.',
     image: adventureImage,
     price: 599,
     rating: 5,
@@ -183,7 +183,7 @@ const packages = [
   },
 ];
 
-const PackageDetails = () => {
+const PackageDetails = ({ addToCart }) => {
   const { packageName } = useParams();
   const packageDetail = packages.find((pkg) => pkg.name === decodeURIComponent(packageName));
 
@@ -207,15 +207,16 @@ const PackageDetails = () => {
         <h1 className="text-4xl font-bold text-orange-500">{packageDetail.name}</h1>
         <p className="text-gray-600 text-lg mt-2">{packageDetail.description}</p>
       </div>
+
       <div className="flex items-center justify-between mb-6">
         <p className="text-green-600 font-bold text-2xl">Price: ${packageDetail.price}</p>
         <div className="flex items-center">
           {[...Array(packageDetail.rating)].map((_, i) => (
             <span key={i} className="text-yellow-400">★</span>
           ))}
-          <span className="ml-2 text-gray-600">({packageDetail.rating} Stars)</span>
         </div>
       </div>
+
       <div className="mb-6">
         <h2 className="text-2xl font-semibold mb-4">Trip Highlights</h2>
         <ul className="list-disc list-inside space-y-2 text-gray-700">
@@ -224,6 +225,7 @@ const PackageDetails = () => {
           ))}
         </ul>
       </div>
+
       <div className="mb-6">
         <h2 className="text-2xl font-semibold mb-4">Itinerary</h2>
         <ol className="list-decimal list-inside space-y-2 text-gray-700">
@@ -232,6 +234,7 @@ const PackageDetails = () => {
           ))}
         </ol>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
         <div>
           <h3 className="text-xl font-bold mb-2">Inclusions</h3>
@@ -250,8 +253,12 @@ const PackageDetails = () => {
           </ul>
         </div>
       </div>
+
       <div className="text-center">
-        <button className="bg-orange-500 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:bg-orange-600">
+        <button
+          onClick={() => addToCart(packageDetail)}
+          className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
+        >
           Book Now
         </button>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const localDestinations = [
@@ -118,78 +118,121 @@ const internationalDestinations = [
       specialNotes: ['Eiffel Tower', 'Louvre Museum', 'Seine River Cruise'],
     },
   },
+  {
+    name: 'New York City',
+    image: 'nyc.jpg',
+    price: '$2,500',
+    location: 'United States',
+    days: '7',
+    highlights: `New York City is known for its iconic landmarks, including the Statue of Liberty, Times Square, and Central Park. 
+    Experience the fast-paced lifestyle, world-class restaurants, and Broadway shows.`,
+    aboutTour: {
+      inclusions: ['Flights', 'Hotel Stay', 'City Tour'],
+      exclusions: ['Meals'],
+      specialNotes: ['Statue of Liberty', 'Empire State Building', 'Broadway Shows'],
+    },
+  },
+  {
+    name: 'Santorini',
+    image: 'santorini.jpg',
+    price: '€2,200',
+    location: 'Greece',
+    days: '5',
+    highlights: `Santorini, famous for its whitewashed buildings and blue domes, offers breathtaking sunsets and scenic beauty.`,
+    aboutTour: {
+      inclusions: ['Flights', 'Hotel Stay', 'Island Tour'],
+      exclusions: ['Personal Expenses'],
+      specialNotes: ['Wine Tasting', 'Oia Village', 'Caldera Sunset Cruise'],
+    },
+  },
+  {
+    name: 'Maldives',
+    image: 'maldives.jpg',
+    price: '$3,200',
+    location: 'Indian Ocean',
+    days: '5',
+    highlights: `The Maldives is a tropical paradise known for its crystal-clear waters, overwater bungalows, and world-class diving.`,
+    aboutTour: {
+      inclusions: ['Flights', 'Resort Stay', 'Spa Package'],
+      exclusions: ['Personal Expenses'],
+      specialNotes: ['Overwater Bungalows', 'Scuba Diving', 'Spa Treatments'],
+    },
+  },
 ];
 
-const ComponentDetailsComp = () => {
-  const { destinationName } = useParams(); // Get destination name from URL
-  const allDestinations = [...localDestinations, ...internationalDestinations]; // Merge both local and international
+const ComponentDetailsComp = ({ addToCart }) => {
+  const { destinationName } = useParams();
+  const allDestinations = [...localDestinations, ...internationalDestinations];
 
-  // Decode the URL-encoded destination name
   const decodedDestinationName = decodeURIComponent(destinationName.toLowerCase());
-
-  // Find the destination by the decoded name (case insensitive)
   const destination = allDestinations.find(
     (dest) => dest.name.toLowerCase() === decodedDestinationName
   );
 
   if (!destination) {
-    return <p>Destination not found.</p>;
+    return (
+      <div className="container mx-auto px-4 py-8 text-center">
+        <h1 className="text-3xl font-bold text-red-500">Destination Not Found</h1>
+        <p className="text-gray-600 mt-4">
+          Sorry, the destination you are looking for does not exist.
+        </p>
+      </div>
+    );
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-white">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold">{destination.name}</h2>
-        <p className="text-2xl text-red-500">{destination.price}</p>
-      </div>
-      <div className="mb-8">
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-6">
         <img
           src={`/src/assets/images/${destination.image}`}
           alt={destination.name}
-          className="w-full h-64 object-cover rounded-lg shadow-md"
+          className="w-full h-64 object-cover rounded-lg shadow-md mb-4"
         />
+        <h1 className="text-4xl font-bold text-orange-500">{destination.name}</h1>
+        <p className="text-gray-600 text-lg mt-2">{destination.highlights}</p>
       </div>
-      <div className="bg-gray-100 p-6 rounded-lg mb-8">
-        <h3 className="text-xl font-semibold mb-4">Trip Information</h3>
-        <ul className="space-y-2">
-          <li>
-            <strong>Location:</strong> {destination.location}
-          </li>
-          <li>
-            <strong>Days Count:</strong> {destination.days}
-          </li>
-        </ul>
+      <div className="flex items-center justify-between mb-6">
+        <p className="text-green-600 font-bold text-2xl">Price: {destination.price}</p>
+        <p className="text-gray-700">
+          <strong>Location:</strong> {destination.location}
+        </p>
+        <p className="text-gray-700">
+          <strong>Days:</strong> {destination.days}
+        </p>
       </div>
-      <div className="mb-8">
-        <h3 className="text-xl font-semibold mb-4">Highlights</h3>
-        <p className="text-gray-700">{destination.highlights}</p>
-      </div>
-      <div className="bg-gray-100 p-6 rounded-lg">
-        <h3 className="text-xl font-semibold mb-4">About The Tour</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h4 className="font-bold mb-2">Inclusions</h4>
-            <ul className="list-disc list-inside space-y-1">
-              {destination.aboutTour.inclusions.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold mb-2">Exclusions</h4>
-            <ul className="list-disc list-inside space-y-1">
-              {destination.aboutTour.exclusions.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 className="text-xl font-bold mb-4">Inclusions</h3>
+          <ul className="list-disc list-inside space-y-2">
+            {destination.aboutTour.inclusions.map((inclusion, index) => (
+              <li key={index}>{inclusion}</li>
+            ))}
+          </ul>
         </div>
-        <h4 className="font-bold mt-8 mb-2">Special Notes</h4>
-        <ul className="list-disc list-inside space-y-1">
+        <div>
+          <h3 className="text-xl font-bold mb-4">Exclusions</h3>
+          <ul className="list-disc list-inside space-y-2">
+            {destination.aboutTour.exclusions.map((exclusion, index) => (
+              <li key={index}>{exclusion}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="mb-6">
+        <h3 className="text-xl font-bold mb-4">Special Notes</h3>
+        <ul className="list-disc list-inside space-y-2">
           {destination.aboutTour.specialNotes.map((note, index) => (
             <li key={index}>{note}</li>
           ))}
         </ul>
+      </div>
+      <div className="text-center">
+        <button
+          onClick={() => addToCart(destination)}
+          className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600"
+        >
+          Book Now
+        </button>
       </div>
     </div>
   );
