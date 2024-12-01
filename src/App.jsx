@@ -22,6 +22,9 @@ import ContactUs from './ContactUs';
 import Admin from './Admin';
 import ComponentDetailsComp from './ComponentDetailsComp';
 import Cart from './Cart';
+import Header from './User';
+import Login from './Login';
+import Signup from './Signup';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -56,6 +59,7 @@ function App() {
 
   return (
     <Router>
+      <Header />
       <Nav cart={cart} />
       <ToastContainer />
       <Routes>
@@ -78,6 +82,8 @@ function App() {
         <Route path="/packagess" element={<Packagess />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route
           path="/packages/:packageName"
           element={<PackageDetails addToCart={addToCart} />}
